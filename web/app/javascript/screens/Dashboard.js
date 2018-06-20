@@ -131,7 +131,7 @@ const AddRecipe = () => (
   <Mutation
     mutation={ADD_RECIPE}
     update={(cache, { data: { addRecipe: { recipe, errors } } }) => {
-      if (errors) return
+      if (errors.length > 0) return
 
       const { recipes } = cache.readQuery({ query: GET_RECIPES })
 
