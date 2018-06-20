@@ -118,6 +118,11 @@ const ADD_RECIPE = gql`
           title
         }
       }
+
+      errors {
+        path
+        message
+      }
     }
   }
 `
@@ -125,10 +130,10 @@ const ADD_RECIPE = gql`
 const AddRecipe = () => (
   <Mutation
     mutation={ADD_RECIPE}
-    update={(cache, { data: { addRecipe: { recipe } } }) => {
-      const { recipes } = cache.readQuery({
-        query: GET_RECIPES,
-      })
+    update={(cache, { data: { addRecipe: { recipe, errors } } }) => {
+      if (errors) return
+
+      const { recipes } = cache.readQuery({ query: GET_RECIPES })
 
       cache.writeQuery({
         query: GET_RECIPES,
@@ -138,6 +143,13 @@ const AddRecipe = () => (
   >
     {(addRecipe, { data, loading, error }) => (
       <React.Fragment>
+        {data &&
+          data.addRecipe.errors.map(({ message, path }, i) => (
+            <Text key={i} style={styles.error}>
+              {path.join(".")} {message}
+            </Text>
+          ))}
+
         <RecipeForm
           onSubmit={recipe => addRecipe({ variables: { input: recipe } })}
         />
@@ -157,6 +169,9 @@ const styles = StyleSheet.create({
   container: {
     marginTop: theme.space[5],
     marginBottom: theme.space[5],
+  },
+  error: {
+    color: theme.colors.red,
   },
 })
 
