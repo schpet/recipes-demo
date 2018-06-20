@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd web
+yarn link
+cd ../native
+yarn link rails-graphql-recipes
