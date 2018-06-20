@@ -26,7 +26,7 @@ const GET_RECIPES = gql`
 `
 
 const Dashboard = () => (
-  <Query query={GET_RECIPES}>
+  <Query query={GET_RECIPES} pollInterval={1000}>
     {({ loading, error, data, fetchMore }) => {
       if (loading) return <Text style={styles.message}>Loading...</Text>
       if (error) return <Text style={styles.message}>{`⚠️ ${error}`}</Text>

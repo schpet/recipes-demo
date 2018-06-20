@@ -1,4 +1,5 @@
 class Types::QueryType < Types::BaseObject
+  # TODO refactor this into classes?
 
   field :recipe, Types::RecipeType, description: "Find a Recipe by ID", null: true do
     argument :id, ID, required: true
@@ -19,7 +20,7 @@ class Types::QueryType < Types::BaseObject
   end
 
   def recipes(limit:, offset: 0)
-    Recipe.order(created_at: :desc).offset(offset).limit(limit)
+    Recipe.order(created_at: :desc).includes(:ingredients).offset(offset).limit(limit)
   end
 
   # http://graphql-ruby.org/queries/mutations.html
