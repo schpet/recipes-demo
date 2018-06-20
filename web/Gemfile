@@ -8,7 +8,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'webpacker'
 
-gem 'sprockets'
+gem 'sprockets' # used by graphiql
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
