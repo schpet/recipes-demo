@@ -68,8 +68,9 @@ const DashboardView = ({ recipes, fetchMore }) => (
 
 const DELETE_RECIPE = gql`
   mutation deleteRecipe($id: ID!) {
-    deleteRecipe(id: $id) {
-      id
+    deleteRecipe(input: { id: $id }) {
+      recipe { id }
+      errors { message }
     }
   }
 `
@@ -78,12 +79,12 @@ const RecipeWithDelete = ({ recipe }) => (
   <Mutation
     key={recipe.id}
     mutation={DELETE_RECIPE}
-    update={(cache, { data: { deleteRecipe } }) => {
+    update={(cache, { data: { deleteRecipe: { recipe } } }) => {
       const { recipes } = cache.readQuery({ query: GET_RECIPES })
       cache.writeQuery({
         query: GET_RECIPES,
         data: {
-          recipes: recipes.filter(r => r.id !== deleteRecipe.id),
+          recipes: recipes.filter(r => r.id !== recipe.id),
         },
       })
     }}
