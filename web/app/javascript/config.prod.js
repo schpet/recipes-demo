@@ -1,3 +1,3 @@
 export default {
-  graphQLEndpoint: "http://example.com/graphql",
+  graphQLEndpoint: "https://schpet-recipes-demo.herokuapp.com/graphql",
 }
