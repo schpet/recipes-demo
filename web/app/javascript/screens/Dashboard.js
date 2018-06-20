@@ -31,12 +31,29 @@ const Dashboard = () => (
       if (loading) return <Text style={styles.message}>Loading...</Text>
       if (error) return <Text style={styles.message}>{`⚠️ ${error}`}</Text>
 
-      return <DashboardView recipes={data.recipes} fetchMore={fetchMore} />
+      return (
+        <DashboardView
+          recipes={data.recipes}
+          onFetchMore={() => {
+            fetchMore({
+              variables: { offset: data.recipes.length },
+              updateQuery: (prev, { fetchMoreResult }) => {
+                if (!fetchMoreResult) return prev
+
+                return {
+                  ...prev,
+                  recipes: [...prev.recipes, ...fetchMoreResult.recipes],
+                }
+              },
+            })
+          }}
+        />
+      )
     }}
   </Query>
 )
 
-const DashboardView = ({ recipes, fetchMore }) => (
+const DashboardView = ({ recipes, onFetchMore }) => (
   <ScrollView style={styles.container}>
     <AddRecipe />
 
@@ -44,33 +61,19 @@ const DashboardView = ({ recipes, fetchMore }) => (
       <RecipeWithDelete recipe={recipe} key={recipe.id} />
     ))}
 
-    <Button
-      onPress={() =>
-        fetchMore({
-          variables: {
-            offset: recipes.length,
-          },
-          updateQuery: (prev, { fetchMoreResult }) => {
-            if (!fetchMoreResult) return prev
-
-            return {
-              ...prev,
-              recipes: [...prev.recipes, ...fetchMoreResult.recipes],
-            }
-          },
-        })
-      }
-    >
-      Load More
-    </Button>
+    <Button onPress={onFetchMore}>Load More</Button>
   </ScrollView>
 )
 
 const DELETE_RECIPE = gql`
   mutation deleteRecipe($id: ID!) {
     deleteRecipe(input: { id: $id }) {
-      recipe { id }
-      errors { message }
+      recipe {
+        id
+      }
+      errors {
+        message
+      }
     }
   }
 `
