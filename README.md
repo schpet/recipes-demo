@@ -7,6 +7,9 @@ Trying out a couple things:
   with webpack via webpacker
 - a react native app using the same code as the web app
 
+## URLs
+
+https://schpet-recipes-demo.herokuapp.com/
 
 ## Setup
 
