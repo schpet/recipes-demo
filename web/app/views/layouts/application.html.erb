@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recipes</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= javascript_pack_tag 'recipes', defer: true %>
+    <% #= stylesheet_pack_tag 'recipes' %>
+  </head>
+
+  <body>
+    <div id="react-root" style="max-width: 500px; margin: 0 auto;"></div>
+    <%= yield %>
+  </body>
+</html>

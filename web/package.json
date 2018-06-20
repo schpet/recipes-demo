@@ -1,0 +1,27 @@
+{
+  "name": "rails-graphql-recipes",
+  "private": true,
+  "main": "app/javascript/Recipes.js",
+  "dependencies": {
+    "apollo-boost": "0.1.7",
+    "apollo-client": "2.3.2",
+    "apollo-link-context": "1.0.8",
+    "graphql": "0.13.2",
+    "graphql-tag": "2.9.2",
+    "prop-types": "15.6.1",
+    "react": "16.4.0",
+    "react-apollo": "2.1.4",
+    "react-art": "16.4.1"
+  },
+  "devDependencies": {
+    "@rails/webpacker": "3.5.3",
+    "babel-plugin-syntax-dynamic-import": "6.18.0",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-react": "6.24.1",
+    "react-dom": "16.4.0",
+    "react-native-web": "0.8.4",
+    "webpack-dev-server": "2.11.2"
+  }
+}

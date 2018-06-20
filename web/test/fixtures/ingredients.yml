@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+chana_masala_garlic:
+  recipe: chana_masala
+  title: '4 medium cloves garlic, roughly chopped'
+  position: 0
+
+chana_masala_ginger:
+  recipe: chana_masala
+  title: '1 (1-inch) knob ginger, peeled, roughly chopped'
+  position: 1
+
+polenta_0:
+  recipe: polenta
+  title: 'Salt and pepper'
+  position: 0
+
+polenta_1:
+  recipe: polenta
+  title: '1 cup medium or fine cornmeal'
+  position: 1
+
+polenta_2:
+  recipe: polenta
+  title: 'Butter'
+  position: 2
+
+polenta_3:
+  recipe: polenta
+  title: 'Parmesan for soft polenta, optional'
+  position: 3
